@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Nipple remote",
+  "version": "1.0",
+  "description": "An extension for controlling videos on your browser remotely",
+  "browser_action": {
+    "default_icon": "icons/nipple.png",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": [
+    "*://localhost:5000/*"
+  ],
+  "background": {
+    "page": "pages/background.html"
+  }
+}

@@ -1,0 +1,146 @@
+.background {
+	background-color: #f7b09e;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.buttonsContainer {
+	background-color: #cc6c54;
+	border-radius: 100%;
+	height: 350px;
+	width: 350px;
+	position: relative;
+	box-shadow: #cc6c54 0px 22px 70px 4px;
+	color: black;
+}
+
+.volumeUp {
+	--fontSize: 70px;
+
+	font-size: var(--fontSize);
+	position: absolute;
+	left: calc(50% - var(--fontSize)/2);
+	top: 5px;
+	transition-duration: 0.1s;
+	display: none;
+	animation: fadeIn linear 1.5s;
+}
+
+.volumeUp:active {
+	color: white;
+	transition-duration: 0.1s;
+}
+
+.volumeDown {
+	--fontSize: 70px;
+
+	font-size: var(--fontSize);
+	position: absolute;
+	left: calc(50% - var(--fontSize)/2);
+	bottom: 5px;
+	transition-duration: 0.1s;
+	display: none;
+	animation: fadeIn linear 1.5s;
+}
+
+.volumeDown:active {
+	color: white;
+	transition-duration: 0.1s;
+}
+
+.forward {
+	--fontSize: 70px;
+
+	font-size: var(--fontSize);
+	position: absolute;
+	right: 10px;
+	top: calc(50% - var(--fontSize)/2);
+	transition-duration: 0.1s;
+	display: none;
+	animation: fadeIn linear 1.5s;
+}
+
+.forward:active {
+	color: white;
+	transition-duration: 0.1s;
+}
+
+.backward {
+	--fontSize: 70px;
+
+	font-size: var(--fontSize);
+	position: absolute;
+	left: 10px;
+	top: calc(50% - var(--fontSize)/2);
+	transition-duration: 0.1s;
+	display: none;
+	animation: fadeIn linear 1.5s;
+}
+
+.backward:active {
+	transition-duration: 0.1s;
+	color: white;
+}
+
+.pausePlay {
+	--size: 120px;
+
+	width: var(--size);
+	height: var(--size);
+	background-color: #b83919;
+	position: absolute;
+	top: calc(50% - var(--size)/2);
+	left: calc(50% - var(--size)/2);
+	border-radius: 100%;
+	transition-duration: 0.1s;
+	animation: expand 1s ease-in none;
+	animation-play-state: paused;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.pausePlay:active {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+	transition-duration: 0.1s;
+}
+
+@keyframes fadeIn {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes expand {
+	0% {box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 0px 0px inset, rgba(0, 0, 0, 0.15) 0px 0px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 0px 2px, rgba(0, 0, 0, 0.09) 0px 0px 4px, rgba(0, 0, 0, 0.09) 0px 0px 0px, rgba(0, 0, 0, 0.09) 0px 16px 16px;}
+	100% {box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;}
+}
+
+/* Styling for connection no input */
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputContainer button {
+  margin-top: 50px;
+  width: 200px;
+  height: 80px;
+  background-color: #cc6c54;
+  border-radius: 20px;
+  font-size: 2rem;
+}
+
+.digitsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.digitsContainer input {
+  width: 60px;
+  height: 100px;
+  text-align: center;
+  font-size: 2rem;
+  border-radius: 10px;
+}

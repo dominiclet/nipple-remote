@@ -1,0 +1,22 @@
+.popup-content {
+	background-color: #f7b09e;
+	height: 150px;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#connect-button {
+  display: none;
+}
+
+#uid {
+  display: none;
+}
+
+#error-msg {
+  display: none;
+  text-align: center;
+  color: red;
+}
