@@ -8,7 +8,8 @@
     "default_popup": "popup/popup.html"
   },
   "permissions": [
-    "*://localhost:5000/*"
+    "*://localhost:5000/*",
+    "*://*.netflix.com/*"
   ],
   "background": {
     "page": "pages/background.html"

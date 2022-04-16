@@ -77,8 +77,85 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
               const receiveChannel = event.channel;
               console.log("Received data channel")
 
-              receiveChannel.onmessage = (event) => {
-                console.log(event.data);
+              receiveChannel.onmessage = async (event) => {
+                const action = event.data;
+
+                switch (action) {
+                  case "pausePlay":
+
+                    var tabs = await browser.tabs.query({ currentWindow: true, active: true });
+                    console.log(tabs);
+                    var tab = tabs[0];
+                    browser.tabs.executeScript(
+                      tab.id, {
+                        code: '\
+                          if (document.getElementsByTagName("video")[0].paused) document.getElementsByTagName("video")[0].play(); else document.getElementsByTagName("video")[0].pause();\
+                        ',
+                      }
+                    )
+                    break
+
+                  case "volUp":
+                    var tabs = await browser.tabs.query({ currentWindow: true, active: true });
+                    var tab = tabs[0];
+                    browser.tabs.executeScript(
+                      tab.id, {
+                        code: '(() => {\
+                          let videoElem = document.getElementsByTagName("video")[0];\
+                          videoElem.volume += 0.2;\
+                        })()'
+                      }
+                    )
+
+                    break
+
+                  case "volDown":
+                    var tabs = await browser.tabs.query({ currentWindow: true, active: true });
+                    var tab = tabs[0];
+                    browser.tabs.executeScript(
+                      tab.id, {
+                        code: '(() => {\
+                          let videoElem = document.getElementsByTagName("video")[0];\
+                          videoElem.volume -= 0.2;\
+                        })()'
+                      }
+                    )
+                    break
+
+                  case "forward":
+                    var tabs = await browser.tabs.query({ currentWindow: true, active: true });
+                    var tab = tabs[0];
+                    browser.tabs.executeScript(
+                      tab.id, {
+                        code: '(() => {\
+                          var s = document.createElement("script");\
+                          s.src = browser.extension.getURL("scripts/playerForward.js");\
+                          (document.head||document.documentElement).appendChild(s);\
+                          s.onload = function() {\
+                            s.remove();\
+                          }\
+                        })()'
+                      }
+                    )
+                    break
+
+                  case "backward":
+                    var tabs = await browser.tabs.query({ currentWindow: true, active: true });
+                    var tab = tabs[0];
+                    browser.tabs.executeScript(
+                      tab.id, {
+                        code: '(() => {\
+                          var s = document.createElement("script");\
+                          s.src = browser.extension.getURL("scripts/playerBackward.js");\
+                          (document.head||document.documentElement).appendChild(s);\
+                          s.onload = function() {\
+                            s.remove();\
+                          }\
+                        })()'
+                      }
+                    )
+                    break
+                }
               };
             }
 

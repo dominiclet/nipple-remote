@@ -103,26 +103,34 @@ const Home: React.FC = () => {
     }
   }
 
-  const handlePause = () => {
-    (document.getElementById("volUp") as HTMLElement).style.display = "block";
-    (document.getElementById("volUp") as HTMLElement).style.opacity = "1";
-    socket?.emit("pause");
+  const handlePausePlay = () => {
+    if (dataChannel.current) {
+      dataChannel.current.send("pausePlay");
+    }
   }
 
   const handleVolUp = () => {
     if (dataChannel.current) {
-      dataChannel.current.send("Vol UP!");
-      console.log("vol up")
+      dataChannel.current.send("volUp");
     }
   }
 
   const handleVolDown = () => {
+    if (dataChannel.current) {
+      dataChannel.current.send("volDown");
+    }
   }
 
   const handleForward = () => {
+    if (dataChannel.current) {
+      dataChannel.current.send("forward");
+    }
   }
   
   const handleBackward = () => {
+    if (dataChannel.current) {
+      dataChannel.current.send("backward");
+    }
   }
 
   return (
@@ -135,7 +143,7 @@ const Home: React.FC = () => {
               <IonIcon id="volDown" onClick={handleVolDown} icon={volumeLowOutline} className={styles.volumeDown} />
               <IonIcon id="forward" onClick={handleForward} icon={playForwardOutline} className={styles.forward} />
               <IonIcon id="backward" onClick={handleBackward} icon={playBackOutline} className={styles.backward} />
-              <div id="pause" onClick={handlePause} className={styles.pausePlay} />
+              <div id="pause" onClick={handlePausePlay} className={styles.pausePlay} />
             </div> :
             <div className={styles.inputContainer}>
               <div className={styles.digitsContainer}>
