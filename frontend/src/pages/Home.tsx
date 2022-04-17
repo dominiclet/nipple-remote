@@ -1,6 +1,6 @@
 import { IonContent, IonIcon, IonPage } from '@ionic/react';
 import styles from './Home.module.css';
-import { volumeHighOutline, volumeLowOutline, playForwardOutline, playBackOutline } from 'ionicons/icons';
+import { volumeHighOutline, volumeLowOutline, playForwardOutline, playBackOutline, arrowForwardOutline, arrowBackOutline, ellipseOutline } from 'ionicons/icons';
 import { useEffect, useRef, useState } from 'react';
 import { io, Socket } from "socket.io-client";
 import useDigitInput from "react-digit-input";
@@ -133,18 +133,41 @@ const Home: React.FC = () => {
     }
   }
 
+  const handleSlow = () => {
+    if (dataChannel.current)
+      dataChannel.current.send("slow");
+  }
+
+  const handleFast = () => {
+    if (dataChannel.current)
+      dataChannel.current.send("fast");
+  }
+
+  const handleReset = () => {
+    if (dataChannel.current)
+      dataChannel.current.send("speedReset");
+  }
+
   return (
     <IonPage>
       <IonContent fullscreen>
         <div className={styles.background}>
           {connected ?
-            <div className={styles.buttonsContainer}>
-              <IonIcon id="volUp" onClick={handleVolUp} icon={volumeHighOutline} className={styles.volumeUp} />
-              <IonIcon id="volDown" onClick={handleVolDown} icon={volumeLowOutline} className={styles.volumeDown} />
-              <IonIcon id="forward" onClick={handleForward} icon={playForwardOutline} className={styles.forward} />
-              <IonIcon id="backward" onClick={handleBackward} icon={playBackOutline} className={styles.backward} />
-              <div id="pause" onClick={handlePausePlay} className={styles.pausePlay} />
-            </div> :
+            <div className={styles.remoteContainer}>
+              <div className={styles.buttonsContainer}>
+                <IonIcon id="volUp" onClick={handleVolUp} icon={volumeHighOutline} className={styles.volumeUp} />
+                <IonIcon id="volDown" onClick={handleVolDown} icon={volumeLowOutline} className={styles.volumeDown} />
+                <IonIcon id="forward" onClick={handleForward} icon={arrowForwardOutline} className={styles.forward} />
+                <IonIcon id="backward" onClick={handleBackward} icon={arrowBackOutline} className={styles.backward} />
+                <div id="pause" onClick={handlePausePlay} className={styles.pausePlay} />
+              </div> 
+              <div className={styles.speedContainer}>
+                <IonIcon id="slow" onClick={handleSlow} icon={playBackOutline} className={styles.slow} />
+                <IonIcon id="resetSpeed" onClick={handleReset} icon={ellipseOutline} className={styles.reset} />
+                <IonIcon id="fast" onClick={handleFast} icon={playForwardOutline} className={styles.fast} />
+              </div>
+            </div>
+            :
             <div className={styles.inputContainer}>
               <div className={styles.digitsContainer}>
                 <input inputMode="decimal" autoFocus {...digits[0]} />

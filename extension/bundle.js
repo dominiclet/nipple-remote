@@ -3429,6 +3429,57 @@
                           }
                         );
                         break
+
+                      case "fast":
+                        var tabs = await browser.tabs.query({ currentWindow: true, active: true });
+                        var tab = tabs[0];
+                        browser.tabs.executeScript(
+                          tab.id, {
+                            code: '(() => {\
+                          var s = document.createElement("script");\
+                          s.src = browser.extension.getURL("scripts/playerFast.js");\
+                          (document.head||document.documentElement).appendChild(s);\
+                          s.onload = function() {\
+                            s.remove();\
+                          }\
+                        })()'
+                          }
+                        );
+                        break
+
+                      case "slow":
+                        var tabs = await browser.tabs.query({ currentWindow: true, active: true });
+                        var tab = tabs[0];
+                        browser.tabs.executeScript(
+                          tab.id, {
+                            code: '(() => {\
+                          var s = document.createElement("script");\
+                          s.src = browser.extension.getURL("scripts/playerSlow.js");\
+                          (document.head||document.documentElement).appendChild(s);\
+                          s.onload = function() {\
+                            s.remove();\
+                          }\
+                        })()'
+                          }
+                        );
+                        break
+
+                      case "speedReset":
+                        var tabs = await browser.tabs.query({ currentWindow: true, active: true });
+                        var tab = tabs[0];
+                        browser.tabs.executeScript(
+                          tab.id, {
+                            code: '(() => {\
+                          var s = document.createElement("script");\
+                          s.src = browser.extension.getURL("scripts/playerSpeedReset.js");\
+                          (document.head||document.documentElement).appendChild(s);\
+                          s.onload = function() {\
+                            s.remove();\
+                          }\
+                        })()'
+                          }
+                        );
+                        break
                     }
                   };
                 };

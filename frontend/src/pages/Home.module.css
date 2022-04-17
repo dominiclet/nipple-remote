@@ -7,6 +7,12 @@
 	align-items: center;
 }
 
+.remoteContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 .buttonsContainer {
 	background-color: #cc6c54;
 	border-radius: 100%;
@@ -143,4 +149,67 @@
   text-align: center;
   font-size: 2rem;
   border-radius: 10px;
+}
+
+/* Styling for slow/fast buttons */
+.speedContainer {
+	background-color: #cc6c54;
+  height: 60px;
+  border-radius: 20px;
+  width: 250px;
+  align-self: center;
+	position: relative;
+	box-shadow: #cc6c54 0px 22px 70px 4px;
+	color: black;
+}
+
+.slow {
+	--fontSize: 50px;
+
+	font-size: var(--fontSize);
+	position: absolute;
+	left: 10px;
+	top: 5px;
+	transition-duration: 0.1s;
+	display: block;
+	animation: fadeIn linear 1.5s;
+}
+
+.slow:active {
+	color: white;
+	transition-duration: 0.1s;
+}
+
+.fast {
+	--fontSize: 50px;
+
+	font-size: var(--fontSize);
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	transition-duration: 0.1s;
+	display: block;
+	animation: fadeIn linear 1.5s;
+}
+
+.fast:active {
+	color: white;
+	transition-duration: 0.1s;
+}
+
+.reset {
+	--fontSize: 50px;
+
+	font-size: var(--fontSize);
+	position: absolute;
+	right: 100px;
+	top: 5px;
+	transition-duration: 0.1s;
+	display: block;
+	animation: fadeIn linear 1.5s;
+}
+
+.reset:active {
+  color: white;
+  transition-duration: 0.1s;
 }
