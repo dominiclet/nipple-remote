@@ -19,7 +19,6 @@ const Home: React.FC = () => {
   const [rtcConnection, setRtcConnection] = useState<RTCPeerConnection|null>();
   const dataChannel = useRef<RTCDataChannel|null>();
 
-  const url = process.env.REACT_APP_BACKEND_URL || "ws://localhost:5000";
 
   const digits = useDigitInput({
     acceptedCharacters: /^[0-9]$/,
@@ -29,6 +28,7 @@ const Home: React.FC = () => {
   });
 
   useEffect(() => {
+    const url = process.env.REACT_APP_BACKEND_URL || "ws://localhost:5000";
     setRtcConnection(new RTCPeerConnection());
     setSocket(io(url));
   }, []);
